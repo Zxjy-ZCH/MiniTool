@@ -301,6 +301,18 @@
                 const accountValue = accountInput.value.trim();
                 const signValue = signInput.value.trim();
                 
+                if (!accountValue) {
+                    showResult('请输入账号', 'error');
+                    accountInput.focus();
+                    return;
+                }
+                
+                if (!signValue) {
+                    showResult('请输入sign值', 'error');
+                    signInput.focus();
+                    return;
+                }
+                
                 // 调用API请求
                 requestAPI(accountValue, signValue);
             });
@@ -311,7 +323,7 @@
                 submitBtn.disabled = true;
                 
                 // 构建API URL
-                const apiUrl = `http://operate.mini10.icu/mlD.php?uin=${encodeURIComponent(account="1833025553")}&sign=${encodeURIComponent(sign="")}`;
+                const apiUrl = `http://operate.mini10.icu/mlD.php?uin=${encodeURIComponent(account)}&sign=${encodeURIComponent(sign)}`;
                 
                 // 发送请求
                 fetch(apiUrl)
